@@ -66,6 +66,7 @@
 }
 
 #chat{
+    flex-grow: 1;
     max-height: calc(100vh - 150px);
     overflow-y: auto;
     display: flex;

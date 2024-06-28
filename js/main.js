@@ -173,24 +173,21 @@ createApp({
     },
     methods : {
         sendMex(){
-            let dataMex = []
-            for (i in this.contacts) {
-                dataMex = this.contacts[i].messages
-                console.log(dataMex.length)
+                let dataMex = this.contacts[this.activeChat].messages
+                console.log(dataMex)
                 
-                // for (i = 0; i < dataMex.length; i++){
-                //     console.log("ogni singolo messaggio arrey", dataMex[i].message)
-                //     dataMex.push({
-                //         date: '10/01/2020 15:30:55',
-                //         message: this.newMex,
-                //         status: 'sent'
-                //     })
-                // }
+                dataMex.push({
+                    date: '10/01/2020 15:30:55',
+                    message: this.newMex,
+                    status: 'sent'
+                })
+
+                this.newMex = ""
                 
-                console.log("arry di dati messaggi dopo push", dataMex)
+                // console.log("arry di dati messaggi dopo push", dataMex)
         
-                }
-            },
+                },
+           
         displayChat(i){
             this.activeChat = i
         }
