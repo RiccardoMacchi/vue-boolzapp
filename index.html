@@ -17,17 +17,17 @@
         <div id="container">
 <!-- --- Container left --- Container left --- Container left --- Container left -->
             <div id="container_left">
-                <div class="box_top">
+                <div class="box_top" id="fixed_profile">
 
                 </div>
                 <div id="notify">
 
                 </div>
                 <div id="search">
-
+                    <input type="text" v-model="searchInput" @keyup="searchUsers">
                 </div>
                 <div id="wrapper_chat">
-                    <div class="user_chats" v-for="(user,i) in contacts" :key="i" @click="displayChat(i)">
+                    <div :class='contacts[i].visible === true ? "user_chats" : "disable_user_chat"' v-for="(user,i) in contacts" :key="i" @click="displayChat(i)">
                         <img :src="user.avatar" :alt="user.avatar">
                         {{ user.name }}
                     </div>

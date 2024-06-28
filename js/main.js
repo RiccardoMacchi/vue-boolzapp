@@ -3,6 +3,7 @@ const { createApp } = Vue
 createApp({
   data() {
     return {
+        searchInput : "",
         activeChat : 0,
         newMex : "",
         contacts: [
@@ -177,7 +178,7 @@ createApp({
                 console.log(dataMex)
                 
                 dataMex.push({
-                    date: '10/01/2020 15:30:55',
+                    date: '28/06/2024 15:30:55',
                     message: this.newMex,
                     status: 'sent'
                 })
@@ -190,6 +191,19 @@ createApp({
            
         displayChat(i){
             this.activeChat = i
+        },
+
+        searchUsers(){
+            console.log("stai cercando")
+            for (i in this.contacts) {
+                if (this.contacts[i].name.includes(this.searchInput)){
+                    console.log(this.contacts[i].name)
+                    this.contacts[i].visible = true
+                } else {
+                    this.contacts[i].visible = false
+                }
+                
+            }
         }
 
     },

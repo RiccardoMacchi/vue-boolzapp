@@ -28,11 +28,21 @@
     background-color: yellow;
 }
 
+#fixed_profile{
+    position: fixed;
+    width: 100%;
+}
+
+.disable_user_chat {
+    display: none;
+}
+
 /* notify */
 
 #notify{
-    min-height: 80px;
+    min-height: 70px;
     background-color: #8edafc;
+    margin-top: 70px;
 }
 
 #search {
