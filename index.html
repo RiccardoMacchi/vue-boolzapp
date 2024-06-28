@@ -14,7 +14,33 @@
 <body>
     <!-- Container Vue -->
     <div id="app">
+        <div id="container">
+<!-- --- Container left --- Container left --- Container left --- Container left -->
+            <div id="container_left">
+                <div class="box_top">
 
+                </div>
+                <div id="notify">
+
+                </div>
+                <div id="search">
+
+                </div>
+                <div id="wrapper_chat">
+                    <div class="user_chats" v-for="user in contacts">
+                        <img :src="user.avatar" :alt="user.avatar">
+                        {{ user.name }}
+                    </div>
+                </div>
+            </div>
+<!-- --- Container right --- Container right --- Container right --- Container right -->
+            <div id="container_right">
+                <div class="box_top">
+
+                </div>
+
+            </div>
+        </div>
     </div>
     <!-- My script -->
     <script src="js/main.js"></script>
