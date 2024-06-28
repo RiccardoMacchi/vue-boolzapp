@@ -27,8 +27,8 @@
 
                 </div>
                 <div id="wrapper_chat">
-                    <div class="user_chats" v-for="user in contacts">
-                        <img :src="user.avatar" :alt="user.avatar">
+                    <div class="user_chats" v-for="(user,i) in contacts">
+                        <img :src="user.avatar" :alt="user.avatar" :key="i">
                         {{ user.name }}
                     </div>
                 </div>
@@ -38,7 +38,23 @@
                 <div class="box_top">
 
                 </div>
+                <div id="chat">
+                    <div v-for="(mex, i) in contacts" :key="i">
+                        <div v-for="singleMex in mex.messages"  class="chat_box green_chat">
+                            {{ singleMex.message }}
+                        </div>
+                    </div>
+                    <div class="my_mexs">
+                        <div class="chat_box white_chat" v-for="myMex in myMexs">
+                            {{ myMex }}
+                        </div>
+                    </div>
 
+
+                </div>
+                <div id="send_mex">
+                    <input type="text" v-model="newMex" @keyup.enter="sendMex">
+                </div>
             </div>
         </div>
     </div>

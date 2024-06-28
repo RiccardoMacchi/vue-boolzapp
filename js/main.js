@@ -3,6 +3,8 @@ const { createApp } = Vue
 createApp({
   data() {
     return {
+        newMex : "",
+        myMexs : ["Tutto fatto!"],
         contacts: [
             {
                 name: 'Michele',
@@ -170,10 +172,14 @@ createApp({
         }
     },
     methods : {
- 
+        sendMex(){
+            this.myMexs.push(this.newMex);
+            console.log(this.myMexs)
+            this.newMex = ""
+        }
     },
     mounted() {
-        console.log(this.contacts)
+
     }
 
   
