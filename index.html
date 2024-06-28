@@ -18,25 +18,52 @@
 <!-- --- Container left --- Container left --- Container left --- Container left -->
             <div id="container_left">
                 <div class="box_top" id="fixed_profile">
-
+                    <img src="img/profile.png" alt="">
+                    <h5>Riccardo</h5>
+                    <div class="icons_bar">
+                        <i class="fa-regular fa-circle"></i>
+                        <i class="fa-solid fa-message"></i>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </div>
                 </div>
                 <div id="notify">
-
+                    <div id="notify_on_off">
+                        <i class="fa-solid fa-bell-slash"></i>
+                    </div>
+                    <div>
+                        <h6>Ricevi notifiche di nuovi messaggi</h6>
+                        <a href="#">Attiva notifiche desktop</a>
+                    </div>
                 </div>
                 <div id="search">
-                    <input type="text" v-model="searchInput" @keyup="searchUsers">
+                    <div id="btn_search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <input type="text" v-model="searchInput" @keyup="searchUsers" placeholder="Cerca o inizia una nuova chat">
                 </div>
                 <div id="wrapper_chat">
-                    <div :class='contacts[i].visible === true ? "user_chats" : "disable_user_chat"' v-for="(user,i) in contacts" :key="i" @click="displayChat(i)">
+                    <div :class='contacts[i].visible === true ? "user_chats" : "disable_user_chat"' v-for="(user,i) in contacts" :key="i" @click="displayChat(i)" :id='activeChat === i ? "active_chat" : ""'>
                         <img :src="user.avatar" :alt="user.avatar">
-                        {{ user.name }}
+                        <div>
+                            <h5>{{ user.name }}</h5>
+                            <a href="#">{{ user.messages[user.messages.length -1].message }}</a>
+                        </div>
+                        <div id="time">
+                            {{ user.messages[user.messages.length -1].date }}
+                        </div>
                     </div>
                 </div>
             </div>
 <!-- --- Container right --- Container right --- Container right --- Container right -->
             <div id="container_right">
                 <div class="box_top">
-
+                    <div class="actual_chat" v-for="(user,i) in contacts" :key="i" @click="displayChat(i)" :class='activeChat === i ? "active" : ""'>
+                        <img :src="user.avatar" :alt="user.avatar">
+                        <div>
+                            <h5>{{ user.name }}</h5>
+                            <span>Ultimo accesso: </span>
+                        </div>
+                    </div>
                 </div>
                 <div id="chat">
                     <div class="single_chat" :class='activeChat === i ? "active" : ""' v-for="(data, i) in contacts" :key="i">
@@ -51,7 +78,9 @@
                     </div>
                 </div>
                 <div id="send_mex">
+                    <i class="fa-regular fa-face-smile"></i>
                     <input type="text" v-model="newMex" @keyup.enter="sendMex()">
+                    <i class="fa-solid fa-microphone"></i>
                 </div>
             </div>
         </div>
