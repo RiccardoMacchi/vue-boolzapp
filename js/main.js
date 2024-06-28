@@ -4,7 +4,6 @@ createApp({
   data() {
     return {
         newMex : "",
-        myMexs : ["Tutto fatto!"],
         contacts: [
             {
                 name: 'Michele',
@@ -173,9 +172,7 @@ createApp({
     },
     methods : {
         sendMex(){
-            this.myMexs.push(this.newMex);
-            console.log(this.myMexs)
-            this.newMex = ""
+            console.log(this.contacts[i])
         }
     },
     mounted() {

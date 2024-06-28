@@ -39,18 +39,16 @@
 
                 </div>
                 <div id="chat">
-                    <div v-for="(mex, i) in contacts" :key="i">
-                        <div v-for="singleMex in mex.messages"  class="chat_box green_chat">
-                            {{ singleMex.message }}
+                    <div class="single_chat" v-for="(data, i) in contacts" :key="i">
+                        <div v-for="dataMex, in data.messages" :class="{'flex_start' : dataMex.status === 'received'}">
+                            <div v-if="dataMex.status === 'sent'" class="chat_box green_chat">
+                                {{ dataMex.message }}
+                            </div>
+                            <div v-else class="chat_box white_chat">
+                                {{ dataMex.message }}
+                            </div>
                         </div>
                     </div>
-                    <div class="my_mexs">
-                        <div class="chat_box white_chat" v-for="myMex in myMexs">
-                            {{ myMex }}
-                        </div>
-                    </div>
-
-
                 </div>
                 <div id="send_mex">
                     <input type="text" v-model="newMex" @keyup.enter="sendMex">
