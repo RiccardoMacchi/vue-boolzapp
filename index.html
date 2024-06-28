@@ -27,8 +27,8 @@
 
                 </div>
                 <div id="wrapper_chat">
-                    <div class="user_chats" v-for="(user,i) in contacts">
-                        <img :src="user.avatar" :alt="user.avatar" :key="i">
+                    <div class="user_chats" v-for="(user,i) in contacts" :key="i" @click="displayChat(i)">
+                        <img :src="user.avatar" :alt="user.avatar">
                         {{ user.name }}
                     </div>
                 </div>
@@ -39,7 +39,7 @@
 
                 </div>
                 <div id="chat">
-                    <div class="single_chat" v-for="(data, i) in contacts" :key="i">
+                    <div class="single_chat" :class='activeChat === i ? "active" : ""' v-for="(data, i) in contacts" :key="i">
                         <div v-for="dataMex, in data.messages" :class="{'flex_start' : dataMex.status === 'received'}">
                             <div v-if="dataMex.status === 'sent'" class="chat_box green_chat">
                                 {{ dataMex.message }}

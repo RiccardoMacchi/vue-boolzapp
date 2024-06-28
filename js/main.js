@@ -3,6 +3,7 @@ const { createApp } = Vue
 createApp({
   data() {
     return {
+        activeChat : 0,
         newMex : "",
         contacts: [
             {
@@ -172,11 +173,30 @@ createApp({
     },
     methods : {
         sendMex(){
-            console.log(this.contacts[i])
+            let dataMex = []
+            for (i in this.contacts) {
+                dataMex = this.contacts[i].messages
+                console.log(dataMex.length)
+                
+                // for (i = 0; i < dataMex.length; i++){
+                //     console.log("ogni singolo messaggio arrey", dataMex[i].message)
+                //     dataMex.push({
+                //         date: '10/01/2020 15:30:55',
+                //         message: this.newMex,
+                //         status: 'sent'
+                //     })
+                // }
+                
+                console.log("arry di dati messaggi dopo push", dataMex)
+        
+                }
+            },
+        displayChat(i){
+            this.activeChat = i
         }
+
     },
     mounted() {
-
     }
 
   
