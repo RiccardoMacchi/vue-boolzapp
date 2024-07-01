@@ -218,6 +218,9 @@ createApp({
     },
     methods : {
         sendMex(){
+            // nuova data
+            this.newDay = DateTime.now().toLocaleString(DateTime.DATE_SHORT)
+            this.newTimeMex = DateTime.now().toLocaleString(DateTime.TIME_24_WITH_SECONDS)
             let dataMex = this.contacts[this.activeChat].messages
             console.log(dataMex)
             // Condizione per invio mex
