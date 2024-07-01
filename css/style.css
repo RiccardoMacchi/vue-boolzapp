@@ -25,6 +25,7 @@ a {
 }
 
 .icons_bar{
+    position: relative;
     flex-grow: 1;
     text-align: right;
 }
@@ -58,7 +59,7 @@ img {
 }
 
 #fixed_profile img {
-    height: 40px;
+    height: 55px;
     margin: 0 10px;
     border-radius: 50%;
 }
@@ -90,7 +91,7 @@ img {
 }
 
 /* Ricerca in chat */
-#search {
+.search {
     min-height: 50px;
     display: flex;
     align-items: center;
@@ -113,9 +114,11 @@ img {
     transform: translate(-50%,-50%);
 }
 
-#search input{
+input{
     flex-grow: 1;
     height: 35px;
+    padding-left: 10px;
+    border: 1px solid black;
 }
 
 .user_chats {
@@ -176,7 +179,6 @@ img {
 }
 
 #send_mex input{
-    flex-grow: 1;
     height: 30px;
 }
 
@@ -234,6 +236,42 @@ img {
     margin-right: 15px;
 }
 
+.error.fa-triangle-exclamation {
+    visibility: visible;
+}
+
+/* Error Mex */
+.fa-triangle-exclamation{
+    visibility: hidden;
+    color: red;
+}
+
+/* Menu a tentina su icons */
+
+.my_icons_box {
+    margin-right: 5px;
+    position: absolute;
+    right: 0;
+    top 0;
+    width: 350px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid black;
+    box-shadow: 11px 11px 20px #1f1f1f;
+    
+}
+
+.my_icons_box div{
+    line-height: 45px;
+    vertical-align: middle;
+    background-color: #e9ebeb;
+    border-bottom: 1px solid black;
+    padding-right: 10px;
+}
+
+.my_icons_box div:last-child{
+    border-bottom: 0px;
+}
 
 
 
@@ -244,45 +282,64 @@ img {
     /* Regole containers */
 
     #container_left{
-        width: 20%;
+        width: 100px;
     }
 
     #container_right {
-        width: 80%;
+        width: calc(100% - 100px);
     }
 
-    /* Regole elementi container left */
-    .user_chats div {
+    /* Display none su mobile */
+
+    .no_dp_mb{
         display: none;
+    }
+    /* Regole elementi container left */
+    .user_chats {
+        justify-content: center;
+        height: 80px;
     }
 
     .user_chats img {
-        height: 60px;
+        height: 55px;
         align-self: center;
     }
 
-    #notify div:last-child  {
-        display: none;
+    #notify {
+        justify-content: center;
     }
 
-    #fixed_profile div {
-        display: none;
+    .box_top {
+        justify-content: center;
     }
 
-    #btn_search {
-        display: none;
+    #notify_on_off {
+        width: 45px;
+        height: 45px;
     }
 
-    #search {
-        padding: 0;
+    #notify i {
+        font-size: 24px;
     }
 
     /* Regole elemnti container right */
 
     .chat_box {
         width: 100%;
-        padding: 10px 50px 10px 15px;
+        padding: 10px 10px 10px 15px;
     }
+
+    .mex_time {
+        margin-right: 0px;
+    }
+
+    /* Icone box */
+
+    .my_icons_box {
+        width: 200px;
+    }
+
+
 }
 
 

@@ -5,7 +5,7 @@ createApp({
   data() {
     return {
         // risposta mex vuoto
-        replay : false,
+        replay : true,
         // nuova data
         newDay : DateTime.now().toLocaleString(DateTime.DATE_SHORT),
         newTimeMex : DateTime.now().toLocaleString(DateTime.TIME_24_WITH_SECONDS),
@@ -13,6 +13,8 @@ createApp({
         searchInput : "",
         // Chat attive
         activeChat : 0,
+        // Icon click:
+        counterClick: 0,
         // Nuovo mex
         newMex : "",
         // Contatti
@@ -211,7 +213,31 @@ createApp({
             "D'accordo, fammi sapere.",
             "Sei sicuro/a?",
             "Perfetto, ci sentiamo più tardi."
+        ],
+        iconsMenu : [
+            {   
+                icons : false,
+                setting1 : "Cerca tra i contatti",
+            },
+
+            {   
+                icons : false,
+                setting1 : "Aggiungi un'immagine",
+                setting2 : "Aggiungi un video",
+                setting3 : "Aggiungi un altro tipo difile",
+                
+
+            },
+            {   
+                icons : false,
+                setting1 : "Salva Chat",
+                setting2 : "Aggiungi ai Preferiti",
+                setting3 : "Elimina Chat",
+             
+            },
+
         ]
+
         
         
         }
@@ -237,6 +263,7 @@ createApp({
 
 
             this.newMex = ""
+            setTimeout(this.autoReplay, 2000)
             
             // console.log("arry di dati messaggi dopo push", dataMex)
     
@@ -244,6 +271,8 @@ createApp({
 
 // Risposta automatica
         autoReplay(){
+            this.newDay = DateTime.now().toLocaleString(DateTime.DATE_SHORT)
+            this.newTimeMex = DateTime.now().toLocaleString(DateTime.TIME_24_WITH_SECONDS)
             let dataMex = this.contacts[this.activeChat].messages
             if (this.replay === false){
 
@@ -255,10 +284,6 @@ createApp({
                 })
             }
 
-        },
-
-        delayFunction(){
-            setTimeout(autoReplay, 2000)
         },
            
         displayChat(i){
@@ -281,6 +306,16 @@ createApp({
         luxonTime(timeToFormat) {
             const newTime = DateTime.fromFormat(timeToFormat, 'dd/MM/yyyy HH:mm:ss');
             return newTime.toFormat('HH:mm:ss');
+        },
+
+        displayMenuIcon(num){
+            if(this.counterClick % 2 === 0){
+                this.iconsMenu[num].icons = true  
+            }else {
+                this.iconsMenu[num].icons = false
+            }
+            this.counterClick++
+            
         }
 
     },
