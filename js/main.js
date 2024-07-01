@@ -4,12 +4,18 @@ const { DateTime } = luxon;
 createApp({
   data() {
     return {
-        // 28/06/2024 15:30:55
+        // risposta mex vuoto
+        replay : false,
+        // nuova data
         newDay : DateTime.now().toLocaleString(DateTime.DATE_SHORT),
         newTimeMex : DateTime.now().toLocaleString(DateTime.TIME_24_WITH_SECONDS),
+        // Ricerca
         searchInput : "",
+        // Chat attive
         activeChat : 0,
+        // Nuovo mex
         newMex : "",
+        // Contatti
         contacts: [
             {
                 name: 'Michele',
@@ -173,6 +179,7 @@ createApp({
                 ],
             }
         ],
+        // Risposte automatiche
         risposte_boolzapp : [
             "Ciao! Come stai?",
             "Tutto bene, grazie. E tu?",
@@ -213,12 +220,18 @@ createApp({
         sendMex(){
             let dataMex = this.contacts[this.activeChat].messages
             console.log(dataMex)
-            
-            dataMex.push({
-                date: this.newDay + " " + this.newTimeMex,
-                message: this.newMex,
-                status: 'sent'
-            })
+            // Condizione per invio mex
+            if(this.newMex.length === 0){
+                this.replay = false
+            } else {
+                dataMex.push({
+                    date: this.newDay + " " + this.newTimeMex,
+                    message: this.newMex,
+                    status: 'sent',
+                })
+                this.replay = true
+            }
+
 
             this.newMex = ""
             
@@ -229,12 +242,16 @@ createApp({
 // Risposta automatica
         autoReplay(){
             let dataMex = this.contacts[this.activeChat].messages
+            if (this.replay === false){
 
-            dataMex.push({
-                date: this.newDay + " " + this.newTimeMex,
-                message: this.risposte_boolzapp[Math.floor(Math.random() * this.risposte_boolzapp.length - 1)],
-                status: 'received'
-            })
+            } else {
+                dataMex.push({
+                    date: this.newDay + " " + this.newTimeMex,
+                    message: this.risposte_boolzapp[Math.floor(Math.random() * this.risposte_boolzapp.length - 1)],
+                    status: 'received'
+                })
+            }
+
         },
 
         delayFunction(){
