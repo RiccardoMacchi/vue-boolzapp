@@ -168,26 +168,74 @@ createApp({
                     }
                 ],
             }
+        ],
+        risposte_boolzapp : [
+            "Ciao! Come stai?",
+            "Tutto bene, grazie. E tu?",
+            "Che fai di bello oggi?",
+            "Hai programmi per il weekend?",
+            "Sì, certo! Ci vediamo più tardi.",
+            "Mi dispiace, oggi sono occupato/a.",
+            "Perfetto, a che ora ci vediamo?",
+            "Va bene, fammi sapere quando arrivi.",
+            "Grazie mille!",
+            "Non vedo l'ora!",
+            "Hai bisogno di aiuto con qualcosa?",
+            "Fammi sapere se hai bisogno di altro.",
+            "Ci sentiamo più tardi!",
+            "Sto lavorando, ti scrivo dopo.",
+            "Buonanotte, a domani!",
+            "Che ne dici di un caffè domani?",
+            "Ti aggiorno appena ho notizie.",
+            "Sembra interessante!",
+            "Sto uscendo, ci sentiamo dopo.",
+            "Ottima idea!",
+            "Va bene, a dopo.",
+            "Capisco, non preoccuparti.",
+            "Grazie per avermi avvisato.",
+            "A presto!",
+            "Scusa, non posso rispondere adesso.",
+            "È stato un piacere parlare con te.",
+            "Sì, certo, nessun problema.",
+            "D'accordo, fammi sapere.",
+            "Sei sicuro/a?",
+            "Perfetto, ci sentiamo più tardi."
         ]
+        
         
         }
     },
     methods : {
         sendMex(){
-                let dataMex = this.contacts[this.activeChat].messages
-                console.log(dataMex)
-                
-                dataMex.push({
-                    date: '28/06/2024 15:30:55',
-                    message: this.newMex,
-                    status: 'sent'
-                })
+            let dataMex = this.contacts[this.activeChat].messages
+            console.log(dataMex)
+            
+            dataMex.push({
+                date: '28/06/2024 15:30:55',
+                message: this.newMex,
+                status: 'sent'
+            })
 
-                this.newMex = ""
-                
-                // console.log("arry di dati messaggi dopo push", dataMex)
-        
-                },
+            this.newMex = ""
+            
+            // console.log("arry di dati messaggi dopo push", dataMex)
+    
+            },
+
+// Risposta automatica
+        autoReplay(){
+            let dataMex = this.contacts[this.activeChat].messages
+
+            dataMex.push({
+                date: '28/06/2024 15:30:55',
+                message: this.risposte_boolzapp[Math.floor(Math.random() * this.risposte_boolzapp.length - 1)],
+                status: 'received'
+            })
+        },
+
+        delayFunction(){
+            setTimeout(autoReplay, 2000)
+        },
            
         displayChat(i){
             this.activeChat = i
@@ -208,6 +256,7 @@ createApp({
 
     },
     mounted() {
+        
     }
 
   
