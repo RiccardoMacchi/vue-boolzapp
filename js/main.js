@@ -1,8 +1,12 @@
-const { createApp } = Vue
+const { createApp } = Vue;
+const { DateTime } = luxon;
 
 createApp({
   data() {
     return {
+        // 28/06/2024 15:30:55
+        newDay : DateTime.now().toLocaleString(DateTime.DATE_SHORT),
+        newTimeMex : DateTime.now().toLocaleString(DateTime.TIME_24_WITH_SECONDS),
         searchInput : "",
         activeChat : 0,
         newMex : "",
@@ -211,7 +215,7 @@ createApp({
             console.log(dataMex)
             
             dataMex.push({
-                date: '28/06/2024 15:30:55',
+                date: this.newDay + " " + this.newTimeMex,
                 message: this.newMex,
                 status: 'sent'
             })
@@ -227,7 +231,7 @@ createApp({
             let dataMex = this.contacts[this.activeChat].messages
 
             dataMex.push({
-                date: '28/06/2024 15:30:55',
+                date: this.newDay + " " + this.newTimeMex,
                 message: this.risposte_boolzapp[Math.floor(Math.random() * this.risposte_boolzapp.length - 1)],
                 status: 'received'
             })
@@ -252,12 +256,23 @@ createApp({
                 }
                 
             }
+        },
+
+        luxonTime(timeToFormat) {
+            const newTime = DateTime.fromFormat(timeToFormat, 'dd/MM/yyyy HH:mm:ss');
+            return newTime.toFormat('HH:mm:ss');
         }
 
     },
     mounted() {
-        
+        console.log(this.newDay + " " + this.newTimeMex)
     }
 
   
 }).mount('#app')
+
+
+
+
+// Utilizzo setTimeout
+// Utilizzo più funzioni in un solo click

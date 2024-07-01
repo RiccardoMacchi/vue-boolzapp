@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- Script VUE -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- Script Luxom -->
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
     <title>Boozap</title>
 </head>
 <body>
@@ -46,7 +48,7 @@
                         <img :src="user.avatar" :alt="user.avatar">
                         <div>
                             <h5>{{ user.name }}</h5>
-                            <a href="#">{{ user.messages[user.messages.length -1].message }}</a>
+                            <a href="#">{{ user.messages[user.messages.length -1].message }}...</a>
                         </div>
                         <div id="time">
                             {{ user.messages[user.messages.length -1].date }}
@@ -75,9 +77,15 @@
                         <div v-for="dataMex, in data.messages" :class="{'flex_start' : dataMex.status === 'received'}">
                             <div v-if="dataMex.status === 'sent'" class="chat_box green_chat">
                                 {{ dataMex.message }}
+                                <div class="mex_time">
+                                    {{ luxonTime(dataMex.date) }}
+                                </div>
                             </div>
                             <div v-else class="chat_box white_chat">
                                 {{ dataMex.message }}
+                                <div class="mex_time">
+                                    {{ luxonTime(dataMex.date) }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -85,7 +93,9 @@
                 <div id="send_mex">
                     <i class="fa-regular fa-face-smile"></i>
                     <input type="text" v-model="newMex" @keypress.enter="sendMex" @keyup.enter="autoReplay">
-                    <i class="fa-solid fa-microphone"></i>
+                    
+                    <i v-if="newMex.length <= 0" class="fa-solid fa-microphone"></i>
+                    <i v-else class="fa-solid fa-plane-departure" @click="sendMex"></i>
                 </div>
             </div>
         </div>
