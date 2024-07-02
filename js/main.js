@@ -332,6 +332,8 @@ createApp({
                     message: this.emoticons[i],
                     status: 'sent',
                     })
+
+                    setTimeout(this.autoReplay, 2000)
                 },
 // Elimina mex
             canc(i){

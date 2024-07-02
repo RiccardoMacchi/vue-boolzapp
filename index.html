@@ -105,7 +105,7 @@
                         <div v-for="(dataMex, i) in data.messages" :key="i" :class="{'flex_start' : dataMex.status === 'received'}">
                             <div v-if="dataMex.status === 'sent'" class="chat_box green_chat">
                                 <i class="fa-solid fa-trash-can" @click="canc(i)" ></i>
-                                {{ dataMex.message }}
+                                <p v-html="dataMex.message"></p>
                                 <div class="mex_time" >
                                     {{ luxonTime(dataMex.date) }}
                                 </div>
