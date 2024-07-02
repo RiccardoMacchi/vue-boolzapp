@@ -6,6 +6,8 @@ createApp({
     return {
         // risposta mex vuoto
         replay : true,
+        // Emoticons toggle
+        emote : false,
         // nuova data
         newDay : DateTime.now().toLocaleString(DateTime.DATE_SHORT),
         newTimeMex : DateTime.now().toLocaleString(DateTime.TIME_24_WITH_SECONDS),
@@ -216,6 +218,7 @@ createApp({
             "Sei sicuro/a?",
             "Perfetto, ci sentiamo più tardi."
         ],
+        // Icone menu
         iconsMenu : [
             {   
                 icons : false,
@@ -238,10 +241,60 @@ createApp({
              
             },
 
-        ]
+        ],
+        emoticons : [
+            '<i class="fa-solid fa-house icon" style="color: #1f78b4;"></i>',
+            '<i class="fa-solid fa-user icon" style="color: #33a02c;"></i>',
+            '<i class="fa-solid fa-envelope icon" style="color: #e31a1c;"></i>',
+            '<i class="fa-solid fa-bell icon" style="color: #ff7f00;"></i>',
+            '<i class="fa-solid fa-cog icon" style="color: #6a3d9a;"></i>',
+            '<i class="fa-solid fa-camera icon" style="color: #b15928;"></i>',
+            '<i class="fa-solid fa-car icon" style="color: #a6cee3;"></i>',
+            '<i class="fa-solid fa-cloud icon" style="color: #b2df8a;"></i>',
+            '<i class="fa-solid fa-heart icon" style="color: #fb9a99;"></i>',
+            '<i class="fa-solid fa-star icon" style="color: #fdbf6f;"></i>',
+            '<i class="fa-solid fa-trash-can icon" style="color: #cab2d6;"></i>',
+            '<i class="fa-solid fa-search icon" style="color: #ffff99;"></i>',
+            '<i class="fa-solid fa-wrench icon" style="color: #1f78b4;"></i>',
+            '<i class="fa-solid fa-lock icon" style="color: #33a02c;"></i>',
+            '<i class="fa-solid fa-unlock icon" style="color: #e31a1c;"></i>',
+            '<i class="fa-solid fa-music icon" style="color: #ff7f00;"></i>',
+            '<i class="fa-solid fa-headphones icon" style="color: #6a3d9a;"></i>',
+            '<i class="fa-solid fa-globe icon" style="color: #b15928;"></i>',
+            '<i class="fa-solid fa-paper-plane icon" style="color: #a6cee3;"></i>',
+            '<i class="fa-solid fa-shopping-cart icon" style="color: #b2df8a;"></i>',
+            '<i class="fa-solid fa-gift icon" style="color: #fb9a99;"></i>',
+            '<i class="fa-solid fa-clipboard icon" style="color: #fdbf6f;"></i>',
+            '<i class="fa-solid fa-map icon" style="color: #cab2d6;"></i>',
+            '<i class="fa-solid fa-phone icon" style="color: #ffff99;"></i>',
+            '<i class="fa-solid fa-comments icon" style="color: #1f78b4;"></i>',
+            '<i class="fa-solid fa-calendar icon" style="color: #33a02c;"></i>',
+            '<i class="fa-solid fa-clock icon" style="color: #e31a1c;"></i>',
+            '<i class="fa-solid fa-book icon" style="color: #ff7f00;"></i>',
+            '<i class="fa-solid fa-graduation-cap icon" style="color: #6a3d9a;"></i>',
+            '<i class="fa-solid fa-trophy icon" style="color: #b15928;"></i>',
+            '<i class="fa-solid fa-lightbulb icon" style="color: #a6cee3;"></i>',
+            '<i class="fa-solid fa-battery-full icon" style="color: #b2df8a;"></i>',
+            '<i class="fa-solid fa-bolt icon" style="color: #fb9a99;"></i>',
+            '<i class="fa-solid fa-plane icon" style="color: #fdbf6f;"></i>',
+            '<i class="fa-solid fa-train icon" style="color: #cab2d6;"></i>',
+            '<i class="fa-solid fa-ship icon" style="color: #ffff99;"></i>',
+            '<i class="fa-solid fa-bus icon" style="color: #1f78b4;"></i>',
+            '<i class="fa-solid fa-bicycle icon" style="color: #33a02c;"></i>',
+            '<i class="fa-solid fa-tree icon" style="color: #e31a1c;"></i>',
+            '<i class="fa-solid fa-leaf icon" style="color: #ff7f00;"></i>',
+            '<i class="fa-solid fa-fire icon" style="color: #6a3d9a;"></i>',
+            '<i class="fa-solid fa-snowflake icon" style="color: #b15928;"></i>',
+            '<i class="fa-solid fa-umbrella icon" style="color: #a6cee3;"></i>',
+            '<i class="fa-solid fa-coffee icon" style="color: #b2df8a;"></i>',
+            '<i class="fa-solid fa-utensils icon" style="color: #fb9a99;"></i>',
+            '<i class="fa-solid fa-bed icon" style="color: #fdbf6f;"></i>',
+            '<i class="fa-solid fa-shopping-bag icon" style="color: #cab2d6;"></i>',
+            '<i class="fa-solid fa-credit-card icon" style="color: #ffff99;"></i>',
+            '<i class="fa-solid fa-hammer icon" style="color: #1f78b4;"></i>',
+            '<i class="fa-solid fa-medkit icon" style="color: #33a02c;"></i>'
+          ],
 
-        
-        
         }
     },
     methods : {
@@ -270,6 +323,16 @@ createApp({
             // console.log("arry di dati messaggi dopo push", dataMex)
     
             },
+
+// Send emoticons
+            sendEmoticon(i){
+                let dataMex = this.contacts[this.activeChat].messages
+                dataMex.push({
+                    date: this.newDay + " " + this.newTimeMex,
+                    message: this.emoticons[i],
+                    status: 'sent',
+                    })
+                },
 // Elimina mex
             canc(i){
                 console.log("hai cliccato")
@@ -324,6 +387,10 @@ createApp({
                 }
                 
             }
+        },
+// Chat emoticons
+        displayEmoticons(){
+            this.emote = !this.emote
         },
 
         luxonTime(timeToFormat) {

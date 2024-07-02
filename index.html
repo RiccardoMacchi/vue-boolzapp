@@ -122,7 +122,14 @@
                 </div>
                 <div id="send_mex">
                     <i class="fa-solid fa-triangle-exclamation" :class='replay === false ? "error": ""'></i>
-                    <i class="fa-regular fa-face-smile"></i>
+                    <div id="wrapper_icon_chat">
+                        <i class="fa-regular fa-face-smile" @click="displayEmoticons"></i>
+                        <div v-show="emote" id="emoticons_chat">
+                            <div v-html="emoticon" v-for="(emoticon, i) in emoticons" :key="i" @click="sendEmoticon(i)">
+                                
+                            </div>
+                        </div>
+                    </div>
                     <input type="text" v-model="newMex" @keypress.enter="sendMex" placeholder="Inserisci il testo del tuo messaggio">
                     <i v-if="newMex.length <= 0" class="fa-solid fa-microphone"></i>
                     <i v-else class="fa-solid fa-plane-departure" @click="sendMex"></i>

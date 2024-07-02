@@ -292,6 +292,25 @@ input{
     border-bottom-left-radius: 10px;
 }
 
+/* Emoticons chat */
+
+#wrapper_icon_chat {
+    position: relative;
+}
+
+#emoticons_chat {
+    width: 390px;
+    height: 150px;
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    position: absolute;
+    left: 0;
+    bottom: 45px;
+    background-color: #e9ebeb;
+    border: 1px solid black;
+}
 
 
 /* Media query */
@@ -366,6 +385,11 @@ input{
         
     }
 
+    /* Emoticons chat */
+
+    #emoticons_chat {
+        width: 190px;
+    }
 
 }
 
