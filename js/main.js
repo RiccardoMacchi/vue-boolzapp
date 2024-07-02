@@ -274,17 +274,17 @@ createApp({
             canc(i){
                 console.log("hai cliccato")
                 let dataMex = this.contacts[this.activeChat].messages
-                let mexCancelled = "Questo messaggio è stato eliminato"
+                let mexCancelled = {message : "Questo messaggio è stato eliminato"}
                 let actualMex = this.contacts[this.activeChat].messages[i]
-                dataMex.splice(i,1)
+                dataMex.splice(i,1,)
             },
 
 // Elimina chat
             cancChat(){
                 let actualChat = this.contacts[this.activeChat].messages
                 console.log(actualChat)
-                actualChat.splice(0,1)
-                
+                actualChat.splice(0,actualChat.length -1)
+                console.log(this.contacts)
             },
 
 // Risposta automatica
@@ -332,13 +332,7 @@ createApp({
         },
 
         displayMenuIcon(num){
-            if(this.counterClick % 2 === 0){
-                this.iconsMenu[num].icons = true  
-            }else {
-                this.iconsMenu[num].icons = false
-            }
-            this.counterClick++
-            
+            this.iconsMenu[num].icons = ! this.iconsMenu[num].icons  
         }
 
     },
@@ -352,5 +346,4 @@ createApp({
 
 
 
-// Utilizzo setTimeout
-// Utilizzo più funzioni in un solo click
+// Problema se si cancella tutto l'arrey di mex

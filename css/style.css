@@ -207,6 +207,17 @@ input{
     border-radius: 10px;
     padding: 10px 0px 10px 15px;
     width: 400px;
+    position: relative;
+}
+
+/* Elimina mex */
+
+.fa-solid.fa-trash-can {
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    display: none;
+    color: red;
 }
 
 .single_chat {
@@ -230,7 +241,7 @@ input{
 }
 
 #active_chat {
-    background-color: #e9ebeb;
+    background-color:#bdbcbc;
 }
 
 .icons_bar i {
@@ -269,16 +280,23 @@ input{
     border-bottom: 1px solid black;
     padding-right: 10px;
 }
+.my_icons_box div:first-child {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
 
 .my_icons_box div:last-child{
     border-bottom: 0px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 
 
 /* Media query */
 
-@media screen and (max-width:568px) {
+@media screen and (max-width:768px) {
 
     /* Regole containers */
 
@@ -340,6 +358,14 @@ input{
         width: 200px;
     }
 
+    /* Elimina mex */
+    .fa-solid.fa-trash-can {
+        right: -14px;
+        top: 0;
+        transform: translate(-50%,-50%);
+        
+    }
+
 
 }
 
@@ -360,14 +386,16 @@ input{
 }
 
 
-/* Vue Tranistion */
+/* Regole hover */
 
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.5s ease;
+.chat_box:hover .fa-solid.fa-trash-can {
+    display: inline;
 }
 
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
+.user_chats:hover {
+    background-color: #e9ebeb;
+}
+
+.my_icons_box div:hover {
+    background-color:#bdbcbc;
 }
