@@ -283,7 +283,7 @@ createApp({
             cancChat(){
                 let actualChat = this.contacts[this.activeChat].messages
                 console.log(actualChat)
-                actualChat.splice(0,actualChat.length -1)
+                actualChat.splice(0,actualChat.length)
                 console.log(this.contacts)
             },
 

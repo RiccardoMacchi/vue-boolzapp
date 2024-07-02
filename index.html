@@ -76,7 +76,8 @@
                         <img :src="user.avatar" :alt="user.avatar">
                         <div>
                             <h5>{{ user.name }}</h5>
-                            <span>Ultimo accesso: {{ luxonTime(user.messages[user.messages.length -1].date) }} </span>
+                            <span v-if="user.messages.length !== 0">Ultimo accesso: {{ luxonTime(user.messages[user.messages.length -1].date) }} </span>
+                            <span v-else>Inizia ora a chattare con {{ user.name }}</span>
                         </div>
                         <div class="icons_bar">
                             <i class="fa-solid fa-magnifying-glass" @click="displayMenuIcon(0)"></i>
