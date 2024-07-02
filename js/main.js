@@ -15,6 +15,8 @@ createApp({
         activeChat : 0,
         // Icon click:
         counterClick: 0,
+        // Notifiche On Off
+        notOnOff : false,
         // Nuovo mex
         newMex : "",
         // Contatti
@@ -268,6 +270,22 @@ createApp({
             // console.log("arry di dati messaggi dopo push", dataMex)
     
             },
+// Elimina mex
+            canc(i){
+                console.log("hai cliccato")
+                let dataMex = this.contacts[this.activeChat].messages
+                let mexCancelled = "Questo messaggio è stato eliminato"
+                let actualMex = this.contacts[this.activeChat].messages[i]
+                dataMex.splice(i,1)
+            },
+
+// Elimina chat
+            cancChat(){
+                let actualChat = this.contacts[this.activeChat].messages
+                console.log(actualChat)
+                actualChat.splice(0,1)
+                
+            },
 
 // Risposta automatica
         autoReplay(){
@@ -285,7 +303,12 @@ createApp({
             }
 
         },
-           
+// Notify On Off
+
+        notifyToggle(){
+            this.notOnOff = !this.notOnOff
+        },
+
         displayChat(i){
             this.activeChat = i
         },

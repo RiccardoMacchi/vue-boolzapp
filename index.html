@@ -19,6 +19,7 @@
         <div id="container">
 <!-- --- Container left --- Container left --- Container left --- Container left -->
             <div id="container_left">
+<!-- Box profilo -->
                 <div class="box_top" id="fixed_profile">
                     <img src="img/profile.png" alt="">
                     <h5 class="no_dp_mb">Riccardo</h5>
@@ -28,7 +29,8 @@
                         <i class="fa-solid fa-ellipsis-vertical"></i>
                     </div>
                 </div>
-                <div id="notify">
+<!-- Box notifiche -->
+                <div v-if="notOnOff" id="notify" @click="notifyToggle">
                     <div id="notify_on_off">
                         <i class="fa-solid fa-bell-slash"></i>
                     </div>
@@ -37,8 +39,17 @@
                         <a href="#">Attiva notifiche desktop</a>
                     </div>
                 </div>
+                <div v-else id="notify" @click="notifyToggle">
+                    <div id="notify_on_off">
+                        <i class="fa-solid fa-bell"></i>
+                    </div>
+                    <div class="no_dp_mb">
+                        <h6>Disattiva notifiche di nuovi messaggi</h6>
+                        <a href="#">Disattiva notifiche desktop</a>
+                    </div>
+                </div>
                 <div class="search no_dp_mb">
-                    <div id="btn_search no_dp_mb">
+                    <div class="btn_search no_dp_mb">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
                     <input type="text" v-model="searchInput" @keyup="searchUsers" placeholder="Cerca o inizia una nuova chat">
@@ -59,20 +70,28 @@
 <!-- --- Container right --- Container right --- Container right --- Container right -->
             <div id="container_right">
                 <div class="box_top">
-                    <div class="actual_chat" v-for="(user,i) in contacts" :key="i" @click="displayChat(i)" :class='activeChat === i ? "active" : ""'>
+                    <div class="actual_chat" v-for="(user,i) in contacts" :key="i" :class='activeChat === i ? "active" : ""'>
                         <img :src="user.avatar" :alt="user.avatar">
                         <div>
                             <h5>{{ user.name }}</h5>
-                            <span>Ultimo accesso:</span>
+                            <span>Ultimo accesso: {{ user.messages[user.messages.length -1].date }} </span>
                         </div>
                         <div class="icons_bar">
-                            <i class="fa-solid fa-ellipsis-vertical" @click="displayMenuIcon(0)"></i>
+                            <i class="fa-solid fa-magnifying-glass" @click="displayMenuIcon(0)"></i>
                             <i class="fa-solid fa-paperclip" @click="displayMenuIcon(1)"></i>
                             <i class="fa-solid fa-ellipsis-vertical" @click="displayMenuIcon(2)"></i>
+                    <!-- Icons menu -->
                             <div v-show="iconsMenu[i].icons" v-for="(icon, i) in iconsMenu" :key="i" class="my_icons_box">
                                 <div>{{ icon.setting1 }}</div>
-                                <div>{{ icon.setting2 }}</div>
-                                <div>{{ icon.setting3 }}</div>
+                                <div v-if="icon.setting2">{{ icon.setting2 }}</div>
+                                <div v-else class="search">
+                                    <div class="btn_search no_dp_mb">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                    </div>
+                                    <input type="text" v-model="searchInput" @keyup="searchUsers" placeholder="Cerca o inizia una nuova chat">
+                                </div>
+                                <div v-if="icon.setting3 === 'Elimina Chat'" @click="cancChat">{{ icon.setting3 }}</div>
+                                <div v-else> {{ icon.setting3 }} </div>
                             </div>
 
                         </div>
@@ -80,14 +99,14 @@
                 </div>
                 <div id="chat">
                     <div class="single_chat" :class='activeChat === i ? "active" : ""' v-for="(data, i) in contacts" :key="i">
-                        <div v-for="dataMex, in data.messages" :class="{'flex_start' : dataMex.status === 'received'}">
-                            <div v-if="dataMex.status === 'sent'" class="chat_box green_chat">
+                        <div v-for="(dataMex, i) in data.messages" :key="i" :class="{'flex_start' : dataMex.status === 'received'}">
+                            <div v-if="dataMex.status === 'sent'" class="chat_box green_chat" @click="canc(i)">
                                 {{ dataMex.message }}
-                                <div class="mex_time">
+                                <div class="mex_time" >
                                     {{ luxonTime(dataMex.date) }}
                                 </div>
                             </div>
-                            <div v-else class="chat_box white_chat">
+                            <div v-else class="chat_box white_chat" @click="canc(i)">
                                 {{ dataMex.message }}
                                 <div class="mex_time">
                                     {{ luxonTime(dataMex.date) }}
@@ -97,8 +116,8 @@
                     </div>
                 </div>
                 <div id="send_mex">
-                    <i class="fa-regular fa-face-smile"></i>
                     <i class="fa-solid fa-triangle-exclamation" :class='replay === false ? "error": ""'></i>
+                    <i class="fa-regular fa-face-smile"></i>
                     <input type="text" v-model="newMex" @keypress.enter="sendMex" placeholder="Inserisci il testo del tuo messaggio">
                     <i v-if="newMex.length <= 0" class="fa-solid fa-microphone"></i>
                     <i v-else class="fa-solid fa-plane-departure" @click="sendMex"></i>
