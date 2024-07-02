@@ -60,7 +60,7 @@
                         <div class="no_dp_mb">
                             <h5>{{ user.name }}</h5>
     <!-- Condizione se c'è mex o meno -->
-                            <a v-if="user.messages.length !== 0" href="#">{{ user.messages[user.messages.length -1].message }}...</a>
+                            <a v-if="user.messages.length !== 0" href="#" v-html="user.messages[user.messages.length -1].message + '...'"></a>
                             <a v-else href="#">Ancora nessun messaggio...</a>
                         </div>
                         <div v-if="user.messages.length !== 0" id="time" class="no_dp_mb">
