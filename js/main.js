@@ -332,7 +332,7 @@ createApp({
                     message: this.emoticons[i],
                     status: 'sent',
                     })
-
+                    this.emote = false
                     setTimeout(this.autoReplay, 2000)
                 },
 // Elimina mex
